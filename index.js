@@ -22,15 +22,17 @@ const winningPositions=[
 function initGame()
 {
     currentPlayer="X";
-    gameGrid=["","","","","","","","",""];
+    gameGrid=["","","","","","","","",""]; // this is the default value for the Game Grid --> as it will be EMPTY.
     newGameBtn.classList.remove("active");
+
+    //Initally Jab game start hogi(Ya fir page reload hoga) to value daalna padegi..
     gameInfo.innerText=`Current Player - ${currentPlayer}`;
 
-    //UI Par bhi change karna padega....(UI par bhi empty karna padega)
+    //UI Par bhi change karna padega....(UI par bhi empty karna padega) --> Jab New game start hogi tab empty karna  padega.
     boxes.forEach((box,index) =>
     {
         box.innerText="";
-        boxes[index].style.pointerEvents="all";
+        boxes[index].style.pointerEvents="all"; // "ALL" means it will respond to the all Pointer Events.
 
         //One More thing is Missing.... --> Green colour ko bhi remove karna hai
         box.classList=`box box${index+1}`;
@@ -54,7 +56,7 @@ function handleClick(index)
     {
         boxes[index].innerText=currentPlayer; //Box pe Update karna matlab UI pe change karega
         gameGrid[index]=currentPlayer;        //GameGrid se ham hamare liye status check karenge(used for INNERLOGIC)
-        boxes[index].style.pointerEvents="none";      
+        boxes[index].style.pointerEvents="none";   //Cursor-Pointer ko hatayega....    
 
         //swap the the TURN
         swapTurn();
@@ -115,6 +117,7 @@ function checkGameOver()
         }
     })
 
+    //agar Upar wala code chala ke idhar aaya hai then it means we have the Winner...
     if(answer!=="")
     {
         gameInfo.innerText=`Winner Player-${answer}`;
